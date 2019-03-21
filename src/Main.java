@@ -5,21 +5,15 @@ public class Main
 {
     public static void main(String[] args)
     {
-        menu();
-    }
-    public static void menu()
-    {
         System.out.println("1. Add student");
         System.out.println("2. Show studentsList");
         System.out.println("3. Search student by ID");
         System.out.println("4. Sort");
         System.out.println("5. Delete student");
         System.out.println("0. Stop");
-        checkMenu();
-    }
-    public static void checkMenu()
-    {
+
         StudentTest studentTest = new StudentTest();
+        int studentId;
         int x = 1;
         do {
             Scanner scanner = new Scanner(System.in);
@@ -28,27 +22,36 @@ public class Main
             x = scanner.nextInt();
             switch (x)
             {
-                case 0 : System.exit(0);
-                break;
-
-                case 1 : studentTest.addStudent();
-                break;
-
-                case 2 : studentTest.studentList();
-                break;
-
-                case 3: studentTest.searchStudentById();
-                break;
-
-                case 4 : studentTest.sortStudentList();
-                break;
-
+                case 0 : 
+                    System.exit(0);
+                    break;
+                case 1 :
+                    studentTest.addStudent();
+                    System.out.println("added.");
+                    break;
+                case 2 :
+                    System.out.println("List of students :");
+                    studentTest.studentList();
+                    break;
+                case 3:
+                    System.out.println("Enter ID of student:");
+                    studentId = scanner.nextInt();
+                    studentTest.searchStudentById(studentId);
+                    break;
+                case 4 : 
+                    studentTest.sortStudentList();
+                    System.out.println("Sort done.");
+                    break;
                 case 5:
-                    studentTest.deleteStudentById();
+                    System.out.println("Enter ID of student to delete:");
+                    studentId = scanner.nextInt();
+                    studentTest.deleteStudentById(studentId);
+                    System.out.println("Deleted");
                     break;
                 default:
                     System.exit(0);
             }
         }while (x != 0);
     }
+
 }

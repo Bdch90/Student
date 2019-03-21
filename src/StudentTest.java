@@ -4,45 +4,49 @@ import java.util.ArrayList;
 public class StudentTest implements IStudentTest{
     Scanner scanner = new Scanner(System.in);
     ArrayList<Student> studentsList = new ArrayList<Student>();
-    int input;
     int index;
+    int studentId;
     @Override
     public void addStudent()
     {
         Student student = new Student();
+        createInfoOfStudent(student);
         studentsList.add(student);
+    }
+
+    public void createInfoOfStudent(Student student)
+    {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Student ID :");
-        int id = scanner.nextInt();
-        student.setStudentID(id);
+        studentId = scanner.nextInt();
+        student.setStudentID(studentId);
 
-//        scanner.nextLine();
-//        System.out.println("Enter student name :");
-//        String name = scanner.nextLine();
-//        student.setStudentName(name);
-//
-//        System.out.println("Student gender :");
-//        String gender = scanner.nextLine();
-//        student.setStudentGender(gender);
-//
-//        System.out.println("Math points :");
-//        Double math = scanner.nextDouble();
-//        student.setMathPoint(math);
-//
-//        System.out.println("Chemistry points :");
-//        Double chemistry = scanner.nextDouble();
-//        student.setChemistryPoint(chemistry);
-//
-//        System.out.println("Physics points :");
-//        Double physics = scanner.nextDouble();
-//        student.setPhysicsPoint(physics);
-        System.out.println("added.");
+        scanner.nextLine();
+        System.out.println("Enter student name :");
+        String name = scanner.nextLine();
+        student.setStudentName(name);
+
+        System.out.println("Student gender :");
+        String gender = scanner.nextLine();
+        student.setStudentGender(gender);
+
+        System.out.println("Math points :");
+        Double math = scanner.nextDouble();
+        student.setMathPoint(math);
+
+        System.out.println("Chemistry points :");
+        Double chemistry = scanner.nextDouble();
+        student.setChemistryPoint(chemistry);
+
+        System.out.println("Physics points :");
+        Double physics = scanner.nextDouble();
+        student.setPhysicsPoint(physics);
     }
+
     @Override
     public void studentList()
     {
-        System.out.println("List of students :");
         for (Student student : studentsList)
         {
             System.out.println(student.displayStudent() + "\n");
@@ -64,26 +68,20 @@ public class StudentTest implements IStudentTest{
                 }
             }
         }
-        System.out.println("Sort done.");
     }
 
     @Override
-    public void deleteStudentById()
+    public void deleteStudentById(int studentId)
     {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter ID of student to delete:");
-        input = scanner.nextInt();
-        getIndex(input);
-        studentsList.remove(index);
-        System.out.println("Deleted");
+        getIndex(studentId);
+        studentsList.remove(studentId);
     }
 
-    public void searchStudentById() {
-        System.out.println("Enter ID of student:");
-        input = scanner.nextInt();
-        if (getIndex(input) >= 0)
+    public void searchStudentById(int studentId) {
+
+        if (getIndex(studentId) >= 0)
         {
-            System.out.println(studentsList.get(getIndex(input)).displayStudent());
+            System.out.println(studentsList.get(getIndex(studentId)).displayStudent());
         }
         else
         {
@@ -91,11 +89,11 @@ public class StudentTest implements IStudentTest{
         }
     }
 
-    public int getIndex(int input)
+    public int getIndex(int studentId)
     {
         for (index = 0; index < studentsList.size(); index++)
         {
-            if (studentsList.get(index).getStudentID() == input)
+            if (studentsList.get(index).getStudentID() == studentId)
             {
                 return index ;
             }
