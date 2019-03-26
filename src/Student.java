@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Student
 {
@@ -80,5 +81,33 @@ public class Student
                 + " , ID : " + this.getStudentID() + " Math points : " + this.getMathPoint()
                 + " , Chemistry points : " + this.getChemistryPoint() + " , Physics points : "
                 + this.getPhysicsPoint();
+    }
+    public void createProfileOfStudent()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Student ID :");
+        int studentId = scanner.nextInt();
+        this.setStudentID(studentId);
+
+        scanner.nextLine();
+        System.out.println("Enter student name :");
+        String name = scanner.nextLine();
+        this.setStudentName(name);
+
+        System.out.println("Student gender :");
+        String gender = scanner.nextLine();
+        this.setStudentGender(gender);
+
+        System.out.println("Math points :");
+        Double math = scanner.nextDouble();
+        this.setMathPoint(math);
+
+        System.out.println("Chemistry points :");
+        Double chemistry = scanner.nextDouble();
+        this.setChemistryPoint(chemistry);
+
+        System.out.println("Physics points :");
+        Double physics = scanner.nextDouble();
+        this.setPhysicsPoint(physics);
     }
 }

@@ -6,42 +6,11 @@ public class StudentTest implements IStudentTest{
     ArrayList<Student> studentsList = new ArrayList<Student>();
     int index;
     int studentId;
+
     @Override
-    public void addStudent()
+    public void addStudent(Student student)
     {
-        Student student = new Student();
-        createInfoOfStudent(student);
         studentsList.add(student);
-    }
-
-    public void createInfoOfStudent(Student student)
-    {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Student ID :");
-        studentId = scanner.nextInt();
-        student.setStudentID(studentId);
-
-        scanner.nextLine();
-        System.out.println("Enter student name :");
-        String name = scanner.nextLine();
-        student.setStudentName(name);
-
-        System.out.println("Student gender :");
-        String gender = scanner.nextLine();
-        student.setStudentGender(gender);
-
-        System.out.println("Math points :");
-        Double math = scanner.nextDouble();
-        student.setMathPoint(math);
-
-        System.out.println("Chemistry points :");
-        Double chemistry = scanner.nextDouble();
-        student.setChemistryPoint(chemistry);
-
-        System.out.println("Physics points :");
-        Double physics = scanner.nextDouble();
-        student.setPhysicsPoint(physics);
     }
 
     @Override
@@ -73,8 +42,12 @@ public class StudentTest implements IStudentTest{
     @Override
     public void deleteStudentById(int studentId)
     {
-        getIndex(studentId);
-        studentsList.remove(studentId);
+        studentsList.remove(getIndex(studentId));
+    }
+
+    @Override
+    public void changeProfileOfStudent(int studentId) {
+        studentsList.get(getIndex(studentId)).createProfileOfStudent();
     }
 
     public void searchStudentById(int studentId) {

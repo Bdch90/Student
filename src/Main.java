@@ -9,14 +9,14 @@ public class Main
         System.out.println("2. Show studentsList");
         System.out.println("3. Search student by ID");
         System.out.println("4. Sort");
-        System.out.println("5. Delete student");
+        System.out.println("5. Change profile of student");
+        System.out.println("6. Delete student");
         System.out.println("0. Stop");
-
+        Scanner scanner = new Scanner(System.in);
         StudentTest studentTest = new StudentTest();
         int studentId;
         int x = 1;
         do {
-            Scanner scanner = new Scanner(System.in);
             System.out.println("---------------");
             System.out.println("Enter a number:");
             x = scanner.nextInt();
@@ -26,7 +26,9 @@ public class Main
                     System.exit(0);
                     break;
                 case 1 :
-                    studentTest.addStudent();
+                    Student student = new Student();
+                    student.createProfileOfStudent();
+                    studentTest.addStudent(student);
                     System.out.println("added.");
                     break;
                 case 2 :
@@ -42,7 +44,13 @@ public class Main
                     studentTest.sortStudentList();
                     System.out.println("Sort done.");
                     break;
-                case 5:
+                case 5 :
+                    System.out.println("Enter student ID:");
+                    studentId = scanner.nextInt();
+                    studentTest.changeProfileOfStudent(studentId);
+                    studentTest.studentList();
+                    break;
+                case 6 :
                     System.out.println("Enter ID of student to delete:");
                     studentId = scanner.nextInt();
                     studentTest.deleteStudentById(studentId);
@@ -53,5 +61,4 @@ public class Main
             }
         }while (x != 0);
     }
-
 }
